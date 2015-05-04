@@ -25,8 +25,7 @@ in_files = [
     "FreeOrionCA.exe",
     "FreeOrionD.exe",
     "GiGiSDL.dll",
-    "GiGi.dll",
-    "log4cpp.dll"
+    "GiGi.dll"
 ]
 
 print "Creating %s in %s" % (out_file, out_dir)
