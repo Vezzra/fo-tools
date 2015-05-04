@@ -1,6 +1,5 @@
 import sys
 import os
-from datetime import datetime
 from subprocess import check_output
 from zipfile import ZipFile, ZIP_DEFLATED
 
@@ -10,8 +9,8 @@ os.chdir(os.path.join(os.path.dirname(sys.argv[0]), "FreeOrion"))
 build_no = "XXXX"
 try:
     commit = check_output(["git", "show", "-s", "--format=%h", "HEAD"]).strip()
-    timestamp = float(check_output(["git", "show", "-s", "--format=%ct", "HEAD"]).strip())
-    build_no = ".".join([datetime.utcfromtimestamp(timestamp).strftime("%Y-%m-%d"), commit])
+    timestamp = check_output(["git", "show", "-s", "--format=%cd", "--date=short", "HEAD"]).strip()
+    build_no = ".".join([timestamp, commit])
 except:
     print "WARNING: git not installed, can't determine build number"
 
