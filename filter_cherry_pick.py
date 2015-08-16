@@ -13,4 +13,4 @@ for sha in check_output(["git", "rev-list", "--cherry-pick", "--left-only", "--n
                          "%s...%s" % (sys.argv[1], sys.argv[2])]).splitlines():
     author = check_output(["git", "show", "-s", r"--format=%an", sha]).strip(" \n")
     msg = check_output(["git", "show", "-s", r"--format=%s", sha]).strip(" \n")
-    print "%s   %s [%s]" % (sha[:7], msg[:50], author)
+    print "%s   %s [%s]" % (sha[:7], msg[:100], author)
