@@ -9,7 +9,7 @@ os.chdir(os.path.join(os.path.dirname(sys.argv[0]), "FreeOrion"))
 
 build_no = "XXXX"
 try:
-    commit = check_output(["git", "show", "-s", "--format=%H", "HEAD"]).strip()[:7]
+    commit = check_output(["git", "show", "-s", "--format=%h", "HEAD"]).strip()
     timestamp = float(check_output(["git", "show", "-s", "--format=%ct", "HEAD"]).strip())
     build_no = ".".join([datetime.utcfromtimestamp(timestamp).strftime("%Y-%m-%d"), commit])
 except:
