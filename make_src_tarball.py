@@ -33,8 +33,10 @@ try:
     chdir(WC_DIR)
     print "Checkout %s..." % branch
     check_call("git checkout %s" % branch, shell=True)
-    print "Remove OSX specific garbage..."
-    check_call("dot_clean -m .", shell=True)
+
+    if sys.platform == "darwin":
+        print "Remove OSX specific garbage..."
+        check_call("dot_clean -m .", shell=True)
 
     print "Determine FO version & build..."
     r = check_output(r"cmake/make_versioncpp.py . CMake", shell=True)
