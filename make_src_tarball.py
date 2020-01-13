@@ -13,6 +13,7 @@ EXCLUDE_ITEMS = [
     r"msvc2010/*",
     r"msvc2013/*",
     r"msvc2015/*",
+    r"msvc2017/*",
     r"Xcode/*",
     r".git/*",
     r".*",
