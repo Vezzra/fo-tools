@@ -25,7 +25,6 @@ in_files = [
     "FreeOrion.exe",
     "FreeOrionCA.exe",
     "FreeOrionD.exe",
-    "GiGiSDL.dll",
     "GiGi.dll"
 ]
 
