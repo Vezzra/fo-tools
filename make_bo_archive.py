@@ -5,15 +5,15 @@ from subprocess import check_output
 from zipfile import ZipFile, ZIP_DEFLATED
 
 
-os.chdir(os.path.join(os.path.dirname(sys.argv[0]), "FreeOrion"))
+os.chdir(os.path.normpath(os.path.join(os.path.dirname(sys.argv[0]), "FreeOrion")))
 
 build_no = "XXXX"
 try:
-    commit = check_output(["git", "show", "-s", "--format=%h", "--abbrev=7", "HEAD"]).strip()
+    commit = str(check_output(["git", "show", "-s", "--format=%h", "--abbrev=7", "HEAD"]).decode()).strip()
     timestamp = float(check_output(["git", "show", "-s", "--format=%ct", "HEAD"]).strip())
     build_no = ".".join([datetime.utcfromtimestamp(timestamp).strftime("%Y-%m-%d"), commit])
 except:
-    print "WARNING: git not installed, can't determine build number"
+    print("WARNING: git not installed, can't determine build number")
 
 out_dir = os.path.dirname(sys.argv[0])
 out_file = "FreeOrion_%s_Test_Win32_BinariesOnly.zip" % build_no
@@ -28,7 +28,7 @@ in_files = [
     "GiGi.dll"
 ]
 
-print "Creating %s in %s" % (out_file, out_dir)
+print("Creating %s in %s" % (out_file, out_dir))
 
 with ZipFile(out_path, "w", ZIP_DEFLATED) as ar:
     map(ar.write, in_files)
