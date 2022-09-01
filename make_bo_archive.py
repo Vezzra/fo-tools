@@ -31,4 +31,5 @@ in_files = [
 print("Creating %s in %s" % (out_file, out_dir))
 
 with ZipFile(out_path, "w", ZIP_DEFLATED) as ar:
-    map(ar.write, in_files)
+    for f in in_files:
+        ar.write(f)
