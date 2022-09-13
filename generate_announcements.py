@@ -17,7 +17,7 @@ New test build (build ${buildno}) available for Windows on sourceforge.
 ==========
 New test build (build ${buildno}) available for macOS 10.12 and later on sourceforge.
 
-[url=http://sourceforge.net/projects/freeorion/files/FreeOrion/Test/FreeOrion_${buildno}_MacOSX_10.12.dmg/download]Download link.[/url]
+[url=http://sourceforge.net/projects/freeorion/files/FreeOrion/Test/FreeOrion_${buildno}_Test_MacOSX_10.12.dmg/download]Download link.[/url]
 ==========
 New test builds available for Windows and macOS (build ${buildno}):
 https://sourceforge.net/projects/freeorion/files/FreeOrion/Test/
