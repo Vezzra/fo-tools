@@ -16,7 +16,7 @@ TARGET_APP = "ALL_BUILD"
 TARGET_PACKAGE = "package"
 BUILD_CONFIG = "Release"
 
-DMG_NAME = "FreeOrion-0.4.7+-MacOSX_10.9.dmg"
+DMG_NAME = "FreeOrion-0.4.10+-MacOSX_10.12.dmg"
 
 
 def get_buildno(src_dir=SRC_DIR):
@@ -33,20 +33,29 @@ def get_buildno(src_dir=SRC_DIR):
 
 def run_cmake(src_dir=SRC_DIR, build_dir=BUILD_DIR, log_dir="log"):
     with open(os.path.join(log_dir, "cmake.log"), "w") as logfile:
-        retval = call(["cmake", "-G", "Xcode", "-B%s" % build_dir, "-H%s" % src_dir, "-Wno-dev"],
+        retval = call(["cmake", "-G", "Xcode", "-B%s" % build_dir, "-H%s" % src_dir, "-DGLEW_USE_STATIC_LIBS=ON", "-Wno-dev"],
                       stdout=logfile, stderr=logfile)
     return retval == 0
 
 
 def run_xcodebuild(project=XCODE_PROJECT, target=TARGET_PACKAGE, config=BUILD_CONFIG, log_dir="log"):
     with open(os.path.join(log_dir, "build.log"), "w") as logfile:
-        retval = call(["xcodebuild", "-project", project, "-target", target, "-configuration", config],
-                      stdout=logfile, stderr=logfile)
+        build_cmd = ["xcodebuild",
+            "-project", project,
+            "-target", target,
+            "-configuration", config,
+            'CODE_SIGN_IDENTITY=""',
+            'CODE_SIGN_ENTITLEMENTS=""',
+            'CODE_SIGNING_REQUIRED="NO"',
+            'CODE_SIGNING_ALLOWED="NO"'
+        ]
+        retval = call(build_cmd, stdout=logfile, stderr=logfile)
     return retval == 0
 
 
 def rename_dmg(build_dir=BUILD_DIR, build_no="---"):
-    os.rename(os.path.join(build_dir, DMG_NAME), "./FreeOrion_%s_MacOSX_10.9.dmg" % build_no)
+    fname = "./FreeOrion_%s_Test_MacOSX_10.12.dmg" % build_no
+    os.rename(os.path.join(build_dir, fname), fname)
 
 
 if __name__ == "__main__":
