@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/bin/python
 
 
 import sys
@@ -9,12 +9,15 @@ from subprocess import check_call, check_output
 
 
 EXCLUDE_ITEMS = [
-    r"Installer/*",
     r"msvc2010/*",
     r"msvc2013/*",
     r"msvc2015/*",
     r"msvc2017/*",
+    r"msvc2019/*",
+    r"msvc2022/*",
     r"Xcode/*",
+    r"snap/*",
+    r"godot/*",
     r".git/*",
     r".*",
     r"*.pyc",
@@ -36,7 +39,7 @@ try:
     check_call("git checkout %s" % branch, shell=True)
 
     if sys.platform == "darwin":
-        print "Remove OSX specific garbage..."
+        print "Remove macOS specific garbage..."
         check_call("dot_clean -m .", shell=True)
 
     print "Determine FO version & build..."
